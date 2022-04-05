@@ -79,10 +79,10 @@ WSGI_APPLICATION = 'mmmkhotel.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mmkhotels', 
+        'NAME': 'mmkhotels123', 
         'USER': 'tintintheadmin',
         'PASSWORD': '[ut(@txC3b=+%',
-        'HOST': 'mmkhotels.mysql.database.azure.com',
+        'HOST': 'mmkhotels123.mysql.database.azure.com',
         'PORT': '3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
