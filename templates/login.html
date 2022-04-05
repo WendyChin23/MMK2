@@ -1,0 +1,134 @@
+
+  {% extends 'base.html' %}
+  {% load static %}
+    {% block content %}
+    <header id="header" class="d-flex align-items-center">
+      <div class="container d-flex align-items-center justify-content-between">
+    
+        <a href="index.html" class="logo mr-auto"><img src="{% static 'assets/img/logo1.png'%}" alt=""></a>
+        <!-- Uncomment below if you prefer to use a text logo -->
+        <!-- <h1 class="logo mr-auto"><a href="index.html">Imperial</a></h1> -->
+        <!-- <img src="{% static 'assets\img\conference6.jpg' %}"/> -->
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li><a class="nav-link scrollto active" href="{% url 'mmkreservation:Home_view' %}#hero">Home</a></li>
+            <li><a class="nav-link scrollto" href="{% url 'mmkreservation:Home_view' %}#about">About</a></li>
+            <li><a class="nav-link scrollto" href="{% url 'mmkreservation:Home_view' %}#services">Services</a></li>
+            <li><a class="nav-link scrollto " href="{% url 'mmkreservation:Home_view' %}#portfolio">Portfolio</a></li>
+            <li><a class="nav-link scrollto" href="{% url 'mmkreservation:Home_view' %}#testimonials">Reviews</a></li>
+            <li><a class="nav-link scrollto" href="{% url 'mmkreservation:Home_view' %}#team">Team</a></li>
+            </li>
+            <li><a class="nav-link scrollto" href="{% url 'mmkreservation:Home_view' %}#contact">Contact</a></li>
+    
+            </li>
+            <li class="dropdown"><a href="#"><span>Account</span> <i class="bi bi-chevron-down"></i></a>
+              <ul>
+                <li><a href="{% url 'mmkreservation:login_view' %}">Login</a></li>
+                <li><a href="{% url 'mmkreservation:signup_view' %}">Sign Up</a></li>
+              </ul>
+            </li>
+            <li class="dropdown"><a href="#"><span>Rooms </span> <i class="bi bi-chevron-down"></i></a>
+              <ul>
+                <li><a href="{% url 'mmkreservation:userviewroom_view' %}">View Rooms Available</a></li>
+                <li>
+                  <a href="{% url 'mmkreservation:rates_view' %}" ">Rates</a>
+                </li>
+                <li>
+                  <a href=" {% url 'mmkreservation:payment_view' %} ">Payment</a>
+                </li>
+              </ul>
+              </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <!-- End Header -->
+  <main id=" main ">
+      <!-- ======= Breadcrumbs ======= -->
+      <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+          <div class="d-flex justify-content-between align-items-center ">
+            <h2>Members</h2>
+            <ol>
+              <li>
+                <a href="Home#hero ">Home</a>
+              </li>
+              <li>Members</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+      <!-- End Breadcrumbs -->
+      <div class="image" style="background: url( '{% static 'assets/img/hero-bg.jpg'%}')"></div>
+      <br>
+      <br>
+      <br>
+      <div class="container">
+        <div class="d-flex justify-content-center h-100 ">
+          <div class="card ">
+            <div class="card-header ">
+              <h3>Sign In</h3>
+              <div class="d-flex justify-content-end social_icon ">
+                <span>
+                  <i class="fab fa-facebook-square "></i>
+                </span>
+                <span>
+                  <i class="fab fa-google-plus-square "></i>
+                </span>
+                <span>
+                  <i class="fab fa-twitter-square "></i>
+                </span>
+              </div>
+            </div>
+            <div class="card-body ">
+              <form method="POST"> {% csrf_token %} <div class="input-group form-group ">
+                  <div class="input-group-prepend ">
+                    <span class="input-group-text ">
+                      <i class="fas fa-user "></i>
+                    </span>
+                  </div>
+                  <input type="text" class="form-control" name="username" placeholder="Username">
+                </div>
+                <div class="input-group form-group ">
+                  <div class="input-group-prepend ">
+                    <span class="input-group-text ">
+                      <i class="fas fa-key "></i>
+                    </span>
+                  </div>
+                  <input type="password" class="form-control" name="password" placeholder="Password">
+                </div>
+                <center>
+                  <div class="row align-items-center remember ">
+                    <br>
+                    <br>
+                    <center>
+                      <input type="checkbox">Remember Me
+                    </center>
+                    <br>
+                  </div>
+                  <div class="form-group ">
+                    <button class="btn float-right login_btn" type="submit">Login</button>
+                  </div>
+                </center>
+              </form>
+            </div>
+            <div class="card-footer ">
+              <div class="d-flex justify-content-center links "> Don't have an account? <a href="{% url 'mmkreservation:signup_view' %} "> Sign Up</a>
+              </div>
+              <div class="d-flex justify-content-center ">
+                <a href="# ">Forgot your password?</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+    </main>
+ <!-- End #main -->
+ {% endblock %}

@@ -1,0 +1,314 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="wrapper">
+  <div class="body-overlay"></div>
+  <!-------------------------sidebar------------>
+  <!-- Sidebar  -->
+  <nav id="sidebar">
+    <div class="sidebar-header">
+      <h3>
+        <img src="{% static 'assets\img\logo1.png' %}"class="img-fluid"/>
+        <span>MMK HOTEL</span>
+      </h3> {% for accountadmin in accountadmin %} <p>{{accountadmin.username}}</p> {% endfor %}
+    </div>
+    <ul class="list-unstyled components">
+      <li>
+        <a href="{% url 'mmkreservation:admin_view' %}"class="dashboard">
+          <i class="material-icons">dashboard</i>
+          <span>HOME</span>
+        </a>
+      </li>
+      <li class="dropdown">
+        <a href="#homeSubmenu1"data-toggle="collapse"aria-expanded="false"class="dropdown-toggle">
+          <i class="material-icons">aspect_ratio</i>Account </a>
+        <ul class="collapse list-unstyled menu"id="homeSubmenu1">
+          <li>
+            <a href="{% url 'mmkreservation:adminaccounts_view' %}">User</a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="{% url 'mmkreservation:adminroom_view' %}">
+          <i class="material-icons">apps</i>
+          <span>Rooms Booked</span>
+        </a>
+      </li>
+      <li class="active">
+        <a href="{% url 'mmkreservation:adminviewroom_view' %}">
+          <i class="material-icons">apps</i>
+          <span>Add Rooms</span>
+        </a>
+      </li>
+      <li class="dropdown">
+        <a href="{% url 'mmkreservation:adminpayment_view' %}">
+          <i class="material-icons">apps</i>
+          <span>Payments</span>
+        </a>
+      </li>
+      <li class="dropdown"class="active">
+        <a href="{% url 'mmkreservation:login_view' %}">
+          <i class="material-icons">apps</i>
+          <span>Log Out</span>
+        </a>
+      </li>
+  </nav>
+  <!--------page-content---------------->
+  <div id="content">
+    <!--top--navbar----design--------->
+    <div class="top-navbar">
+      <div class="xp-topbar">
+        <!-- Start XP Row -->
+        <div class="row">
+          <!-- Start XP Col -->
+          <div class="col-2 col-md-1 col-lg-1 order-2 order-md-1 align-self-center">
+            <div class="xp-menubar">
+              </a>
+              </li>
+            </div>
+          </div>
+          <!-- End XP Col -->
+        </div>
+        <!-- End XP Row -->
+      </div>
+      <div class="xp-breadcrumbbar text-center">
+        <h4 class="page-title">ROOMS</h4>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="#">User</a>
+          </li>
+          <li class="breadcrumb-item active"aria-current="page">Dashboard</li>
+        </ol>
+      </div>
+    </div>
+    <!--------main-content------------->
+    <div class="main-content">
+		<div class="row">
+      <div class="col-md-12">
+        <button href="#"type="button"class="btn btn-primary"data-toggle="modal"
+          data-target="#addvoucher-{{grade.username_id}}" data-whatever="@mdo data-placement="title="Update">
+          Add Room
+        </button>
+        <div class="modal fade show" id="addvoucher-{{grade.username_id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+          aria-hidden="true"data-backdrop="false">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"id="exampleModalLabel">Add Room</h5>
+                <button type="button"class="close"data-dismiss="modal"aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="card-body">
+                <form method="POST"> {% csrf_token %} <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="fas fa-user"></i>
+                      </span>
+                    </div>
+                    <input type="text"class="form-control"placeholder="Room Name"id="roomname"name="roomname">
+                  </div>
+                  <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="fas fa-calendar"></i>
+                      </span>
+                    </div>
+                    <input type="text"class="form-control"placeholder="Room Type"id="roomtype"name="roomtype">
+                  </div>
+                  <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="fas fa-birthday-cake"></i>
+                      </span>
+                    </div>
+                    <input type="text"class="form-control"placeholder="Price"id="id-price"name="price">
+                  </div>
+                  <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="fas fa-user-tie"></i>
+                      </span>
+                    </div>
+                    <input type="text"class="form-control"placeholder="PAX"id="pax"name="pax">
+                  </div>
+                  <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                      <!-- <span class="input-group-text"><i class="fas fa-user-tie"></i></span> -->
+                    </div>
+
+                    <div class="input-group form-group">
+                      <div class="input-group-prepend">
+                        <!-- <span class="input-group-text"><i class="fas fa-user-tie"></i></span> -->
+                      </div>
+                      <center>
+                    <label>  <input type="checkbox" class="form-control" placeholder="Available"  id="isAvailable" name="isAvailable">
+                   Available </label>
+                    </center>
+                    </div>
+
+
+
+                  <div class="form-group">
+                    <div class="text-center">
+                      <button class="btn float-right login_btn"href="{% url 'mmkreservation:adminviewroom_view' %}"
+                        type="submit">ADD Now</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--------main-content------------->
+      <div class="main-content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="table-wrapper">
+              <div class="table-title">
+                <div class="row">
+                  <div class="col-sm-6 p-0 d-flex justify-content-lg-start justify-content-center">
+                    <h2 class="ml-lg-2">View ROOMS</h2>
+                  </div>
+                </div>
+              </div>
+              <table class="table table-hover"id="bootstrap-table">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Conference ID</th>
+                    <th>Room Name</th>
+                    <th>Room Type </th>
+                    <th>Price</th>
+                    <th>Person per room</th>
+                    <th>Available</th>
+                    <th>Action</th>
+                  </tr>
+                </thead> {% for viewroom in viewroom %} <tr>
+                  <td>
+                  <td>{{viewroom.cid}}</td>
+                  <td>{{viewroom.roomname}}</td>
+                  <td>{{viewroom.roomtype}}</td>
+                  <td>{{viewroom.price}}</td>
+                  <td>{{viewroom.pax}}</td>
+                  <td>{{viewroom.isAvailable}}</td>
+                  <td>
+                    <form method="POST"> {% csrf_token %}
+                      <!-- {{ form.non_field_errors }}
+                    {{ form.web_input }} -->
+                    </form>
+                    <button href="#"type="button"class="btn btn-primary"data-toggle="modal"
+                      data-target="#exampleModal-{{viewroom.cid}}"data-whatever="@mdo data-placement="
+                      title="Update">UPDATE</button>
+                    <div class="modal fade show" id="exampleModal-{{viewroom.cid}}" tabindex="-1"
+                      aria-labelledby="exampleModalLabel"aria-hidden="true"data-backdrop="false">
+                      <div class="modal-dialog"style="width: 1500px; padding-top: 200px">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title"id="exampleModalLabel">Update User</h5>
+                              <button type="button"class="close"data-dismiss="modal"aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <form method="POST"> {% csrf_token %} <div class="form-group">
+                                  <label for="recipient-name"class="col-form-label">Order ID</label>
+                                  <input name="cid-cid"value="{{viewroom.cid}}"subject.type="text"
+                                    class="form-control"id="cid-cid"readonly>
+                                  <label for="recipient-name"class="col-form-label">Room Name</label>
+                                  <input type="text"name="roomname-roomname"value="{{viewroom.roomname}}"
+                                    class="form-control"id="roomname-roomname">
+                                  <label for="recipient-name"class="col-form-label">Room Type</label>
+                                  <input type="text"name="roomtype-roomtype"value="{{viewroom.roomtype}}"
+                                    class="form-control"id="roomtype-roomtype">
+                                  <label for="recipient-name"class="col-form-label">Price</label>
+                                  <input type="text"name="price-price"value="{{viewroom.price}}"class="form-control"
+                                    id="price-price">
+                                  <label for="recipient-name"class="col-form-label">PAX</label>
+                                  <input type="text"name="pax-pax"value="{{viewroom.pax}}"class="form-control"
+                                    id="pax-pax">
+                                    <label for="recipient-name" class="col-form-label">Available</label>
+                                    {% if viewroom.isAvailable %}
+                                      <input type="checkbox" name="isAvailable-isAvailable" checked="true" class="form-control" id="isAvailable-isAvailable">
+                                      {% else %}
+                                      <input type="checkbox" name="isAvailable-isAvailable" class="form-control" id="isAvailable-isAvailable">
+                                    {% endif %}
+                                    </div>
+                                  
+                                  
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button"class="btn btn-primary"data-dismiss="modal">Close</button>
+                              <button type="submit"id="BtnUpdate"name="BtnUpdate"
+                                href="{% url 'mmkreservation:adminroom_view' %}"class="btn btn-primary">UPDATE</button>
+                            </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Button trigger modal -->
+                    <a href="button"href="#"class="btn btn-primary"data-target="#Modal-{{viewroom.cid}}"
+                      data-toggle="modal">DELETE</a>
+            </div>
+          </div>
+          <!-- Modal HTML -->
+          <div id="Modal-{{viewroom.cid}}"class="modal fade show"data-backdrop="false">
+            <div class="modal-dialog modal-confirm">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <div class="icon-box">
+                    <i class="material-icons">&#xE5CD;</i>
+                  </div>
+                  <h4 class="modal-title">Are you sure?</h4>
+                  <button type="button"class="close"data-dismiss="modal"aria-hidden="true">&times;</button>
+                </div>
+                <form method="POST"> {% csrf_token %} <div class="modal-body">
+                    <input type="text"name="cid-id"value={{viewroom.cid}} hidden> Are you sure you want to delete
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button"class="btn btn-info"data-dismiss="modal">Cancel</button>
+                    <button type="submit"id="BtnDelete"name="BtnDelete"class="btn btn-danger">Delete</button>
+                  </div>
+              </div>
+            </div> {% endfor %}
+          </div>
+          </td>
+          </tr>
+          </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <br>
+  </div>
+</div>
+</div>
+</div>
+<br>
+<br>
+<!-- End Members Section -->
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</main>
+<!-- End #main -->
+{% endblock %}

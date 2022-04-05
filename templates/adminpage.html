@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="wrapper">
+  <div class="body-overlay"></div>
+  <!-------------------------sidebar------------>
+  <!-- Sidebar  -->
+  <nav id="sidebar">
+    <div class="sidebar-header">
+      <h3>
+        <img src="{% static 'assets\img\logo1.png' %}" class="img-fluid" />
+        <span>MMK HOTEL</span>
+      </h3> {% for accountadmin in accountadmin %} <p>{{accountadmin.username}}</p> {% endfor %}
+    </div>
+    <ul class="list-unstyled components">
+      <li class="active">
+        <a href="{% url 'mmkreservation:admin_view' %}" class="dashboard">
+          <i class="material-icons">dashboard</i>
+          <span>HOME</span>
+        </a>
+      </li>
+      <li class="dropdown">
+        <a href="#homeSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+          <i class="material-icons">aspect_ratio</i>Account </a>
+        <ul class="collapse list-unstyled menu" id="homeSubmenu1">
+          <li>
+            <a href="{% url 'mmkreservation:adminaccounts_view' %}">User</a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="{% url 'mmkreservation:adminroom_view' %}">
+          <i class="material-icons">apps</i>
+          <span>Rooms Booked</span>
+        </a>
+      </li>
+      <li class="dropdown">
+        <a href="{% url 'mmkreservation:adminviewroom_view' %}">
+          <i class="material-icons">apps</i>
+          <span>Add Rooms</span>
+        </a>
+      </li>
+      <li class="dropdown">
+        <a href="{% url 'mmkreservation:adminpayment_view' %}">
+          <i class="material-icons">apps</i>
+          <span>Payment</span>
+        </a>
+      </li>
+      <li class="dropdown">
+        <a href="{% url 'mmkreservation:login_view' %}">
+          <i class="material-icons">apps</i>
+          <span>Log Out</span>
+        </a>
+      </li>
+  </nav>
+  <!--------page-content---------------->
+  <div id="content">
+    <!--top--navbar----design--------->
+    <div class="top-navbar">
+      <div class="xp-topbar">
+        <!-- Start XP Row -->
+        <div class="row">
+          <!-- Start XP Col -->
+          <div class="col-2 col-md-1 col-lg-1 order-2 order-md-1 align-self-center">
+            <div class="xp-menubar">
+              </a>
+              </li>
+              <h2 class="ml-lg-2">DASHBOARD</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid p-5">
+      <div class="row">
+        <div class="col-12">
+          <div class="card m-2">
+            <div class="card-body">
+              <h5 class="card-title"><strong>Total Sales</strong></h5>
+              <p class="card-text" style="font-size: 50px;">$ {{ totalSales }} </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        {% for x in roomBooks %}
+        <div class="col-6">
+          <div class="card m-2">
+            <div class="card-body">
+              <h5 class="card-title"><strong>{{ x.conference.roomname }}</strong></h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{ x.conference.roomtype }}</h6>
+              <p class="card-text">Number of bookings {{ x.count }} </p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}  
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+
+  $(document).ready(function () {
+    $(".xp-menubar").on('click', function () {
+      $('#sidebar').toggleClass('active');
+      $('#content').toggleClass('active');
+    });
+
+    $(".xp-menubar,.body-overlay").on('click', function () {
+      $('#sidebar,.body-overlay').toggleClass('show-nav');
+    });
+
+  });
+
+</script>
+{% endblock %}

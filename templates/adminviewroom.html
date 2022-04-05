@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<header id="header"class="d-flex align-items-center">
+  <div class="container d-flex align-items-center justify-content-between">
+    <a href="index.html"class="logo mr-auto">
+      <img src="{% static 'assets/img/logo1.png'%}"alt="">
+    </a>
+    <!-- Uncomment below if you prefer to use a text logo -->
+    <!-- <h1 class="logo mr-auto"><a href="index.html">Imperial</a></h1> -->
+    <!-- <img src="{% static 'assets\img\conference6.jpg' %}"/> -->
+    <nav id="navbar"class="navbar">
+      <ul>
+        <li>
+          <a class="nav-link scrollto active"href="{% url 'mmkreservation:Home_view' %}#hero">Home</a>
+        </li>
+        <li>
+          <a class="nav-link scrollto"href="{% url 'mmkreservation:Home_view' %}#about">About</a>
+        </li>
+        <li>
+          <a class="nav-link scrollto"href="{% url 'mmkreservation:Home_view' %}#services">Services</a>
+        </li>
+        <li>
+          <a class="nav-link scrollto"href="{% url 'mmkreservation:Home_view' %}#portfolio">Portfolio</a>
+        </li>
+        <li>
+          <a class="nav-link scrollto"href="{% url 'mmkreservation:Home_view' %}#testimonials">Reviews</a>
+        </li>
+        <li>
+          <a class="nav-link scrollto"href="{% url 'mmkreservation:Home_view' %}#team">Team</a>
+        </li>
+        </li>
+        <li>
+          <a class="nav-link scrollto"href="{% url 'mmkreservation:Home_view' %}#contact">Contact</a>
+        </li>
+        </li>
+        <li class="dropdown">
+          <a href="#">
+            <span>Account</span>
+            <i class="bi bi-chevron-down"></i>
+          </a>
+          <ul>
+            <li>
+              <a href="{% url 'mmkreservation:login_view' %}">Login</a>
+            </li>
+            <li>
+              <a href="{% url 'mmkreservation:signup_view' %}">Sign Up</a>
+            </li>
+        </li>
+        <li class="dropdown">
+          <a href="#">
+            <span>Rooms </span>
+            <i class="bi bi-chevron-down"></i>
+          </a>
+          <ul>
+            <li>
+              <a href="{% url 'mmkreservation:userviewroom_view' %}">View Rooms Available</a>
+            </li>
+            <li>
+              <a href="{% url 'mmkreservation:rates_view' %}"">Rates</a>
+            </li>
+            <li>
+              <a href="{% url 'mmkreservation:payment_view' %}">Payment</a>
+            </li>
+          </ul>
+          </li>
+      </ul>
+		</div>
+	</header>
+	<!-- End Header -->
+	<br />
+	<br />
+	<br />
+	<!--------main-content------------->
+	<div class="main-content">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="table-wrapper">
+					<div class="table-title">
+						<div class="row">
+							<div class="col-sm-6 p-0 d-flex justify-content-lg-start justify-content-center">
+								<h2 class="ml-lg-2">View Available Rooms</h2>
+							</div>
+						</div>
+					</div>
+					<table class="table table-hover"id="bootstrap-table">
+						<thead>
+							<tr>
+								<th></th>
+								<th>Conference ID</th>
+								<th>Room Name</th>
+								<th>Room Type </th>
+								<th>Price</th>
+								<th>Person per room</th>
+								<th>Available</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+            {% for viewroom in viewroom %}	
+						<tr>
+							<td>
+								<td>{{viewroom.cid}}</td>
+								<td>{{viewroom.roomname}}</td>
+								<td>{{viewroom.roomtype}}</td>
+								<td>{{viewroom.price}}</td>
+								<td>{{viewroom.pax}}</td>
+								<td>{{viewroom.isAvailable}}</td>
+								<td>
+									<a href="{% url 'mmkreservation:rooms_view' viewroom.cid%}">Click Here to Book </a>
+								</td>
+								<td>
+                 {% endfor %}  
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+  <!-- End #main -->
+{% endblock %}
