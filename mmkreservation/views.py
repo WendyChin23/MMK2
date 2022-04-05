@@ -21,9 +21,7 @@ class Rates(View):
 
 class Success(View):
     def get(self, request):
-        return render(request,'success.html')
-
-
+        return render(request,'success.html')        
 
 class Portfolio(View):
     def get(self, request):
@@ -328,7 +326,6 @@ class AdminPaymentDashboard(View):
                 students = Payment.objects.filter(id=Id).delete()
 
         return redirect('mmkreservation:adminpayment_view')
-
 
 ##INPUTANAN
 class AdminViewRoom(View):

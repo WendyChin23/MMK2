@@ -176,7 +176,6 @@
        
           </th>
           <th>Order ID</th> 
-          <th>Room Type</th> 
           <th>Date </th> 
           <th>Email</th> 
           <th>Day</th>
@@ -189,7 +188,6 @@
             <tr>
                 <td>   
                 <td>{{roomm.rid}}</td> 
-                <td>{{roomm.roomtype}}</td> 
                 <td>{{roomm.date}}</td> 
                 <td>{{roomm.email}}</td> 
                 <td>{{roomm.day}}</td> 
@@ -226,9 +224,7 @@
                                  <label for="recipient-name" class="col-form-label">Order ID</label>
                                 <input name="rid-rid" value="{{roomm.rid}}" subject.type="text" class="form-control" id="rid-rid" readonly>
 
-                                  <label for="recipient-name" class="col-form-label">Room Type</label>
-                                  <input type="text" name="roomtype" value="{{roomm.roomtype}}" class="form-control" id="roomtype">
-                        
+
                                   <label for="recipient-name" class="col-form-label">Date</label>
                                   <input type="date" name="date-date" value="{{roomm.date|date:'Y-m-d'}}" class="form-control" id="date-date">
 
